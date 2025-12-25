@@ -39,6 +39,7 @@ final class ConstrainedManyValueTest extends TestCase
     #[DataProvider('classProvider')]
     public function testMarshallingEmpty(string $class): void
     {
+        /** @var \SimpleSAML\XML\SerializableElementInterface $x */
         $x = new $class([], []);
         $this->assertTrue($x->isEmptyElement());
     }
@@ -70,6 +71,7 @@ final class ConstrainedManyValueTest extends TestCase
 
 
     /**
+     * @return array<string, array<string>>
      */
     public static function classProvider(): array
     {

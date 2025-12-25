@@ -127,6 +127,7 @@ final class ConstrainedValueTest extends TestCase
 
 
     /**
+     * @return array<string, list<string>>
      */
     public static function classProvider(): array
     {
