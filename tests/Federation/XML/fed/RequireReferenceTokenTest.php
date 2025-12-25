@@ -9,8 +9,6 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WebServices\Federation\Constants as C;
 use SimpleSAML\WebServices\Federation\XML\fed\RequireReferenceToken;
-use SimpleSAML\WebServices\SecurityPolicy\XML\sp_200702\AbstractSpElement;
-use SimpleSAML\WebServices\SecurityPolicy\XML\sp_200702\AbstractTokenAssertionType;
 use SimpleSAML\WebServices\SecurityPolicy\XML\sp_200702\IncludeToken;
 use SimpleSAML\WebServices\SecurityPolicy\XML\sp_200702\Type\IncludeTokenValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -29,8 +27,6 @@ use function dirname;
  */
 #[Group('fed')]
 #[CoversClass(RequireReferenceToken::class)]
-#[CoversClass(AbstractTokenAssertionType::class)]
-#[CoversClass(AbstractSpElement::class)]
 final class RequireReferenceTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

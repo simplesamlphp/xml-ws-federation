@@ -9,8 +9,6 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WebServices\Federation\Constants as C;
 use SimpleSAML\WebServices\Federation\XML\fed\AuthenticationToken;
-use SimpleSAML\WebServices\Federation\XML\sp_200702\AbstractNestedPolicyType;
-use SimpleSAML\WebServices\Federation\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WebServices\SecurityPolicy\TestUtils\sp_200702\NestedPolicyTypeTestTrait;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -28,8 +26,6 @@ use function dirname;
  */
 #[Group('fed')]
 #[CoversClass(AuthenticationToken::class)]
-#[CoversClass(AbstractNestedPolicyType::class)]
-#[CoversClass(AbstractSpElement::class)]
 final class AuthenticationTokenTest extends TestCase
 {
     use NestedPolicyTypeTestTrait;

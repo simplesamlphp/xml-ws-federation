@@ -10,8 +10,6 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WebServices\Federation\Constants as C;
 use SimpleSAML\WebServices\Federation\XML\fed\WebBinding;
 use SimpleSAML\WebServices\SecurityPolicy\TestUtils\sp_200702\NestedPolicyTypeTestTrait;
-use SimpleSAML\WebServices\SecurityPolicy\XML\sp_200702\AbstractNestedPolicyType;
-use SimpleSAML\WebServices\SecurityPolicy\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -28,8 +26,6 @@ use function dirname;
  */
 #[Group('fed')]
 #[CoversClass(WebBinding::class)]
-#[CoversClass(AbstractNestedPolicyType::class)]
-#[CoversClass(AbstractSpElement::class)]
 final class WebBindingTest extends TestCase
 {
     use NestedPolicyTypeTestTrait;
