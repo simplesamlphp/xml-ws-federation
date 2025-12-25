@@ -16,10 +16,10 @@
         "simplesamlphp/assert": "~1.9",
         "simplesamlphp/saml2": "~6.0",
         "simplesamlphp/xml-common": "~2.5",
-        "simplesamlphp/xml-security": "~2.0",
+        "simplesamlphp/xml-security": "~2.1",
         "simplesamlphp/xml-ws-addressing": "~1.1",
         "simplesamlphp/xml-ws-security-policy": "~1.0",
-        "simplesamlphp/xml-wss-core": "~1.1"
+        "simplesamlphp/xml-wss-core": "~1.2"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "~1.11"

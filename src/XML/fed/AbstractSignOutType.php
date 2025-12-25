@@ -7,13 +7,14 @@ namespace SimpleSAML\WebServices\Federation\XML\fed;
 use DOMElement;
 use SimpleSAML\WebServices\Federation\Assert\Assert;
 use SimpleSAML\WebServices\Federation\Constants as C;
+use SimpleSAML\WebServices\Security\Type\IDValue;
+use SimpleSAML\WebServices\Security\XML\wsu\IDTrait;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
-use SimpleSAML\XMLSchema\Type\NCNameValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
@@ -25,6 +26,7 @@ abstract class AbstractSignOutType extends AbstractFedElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+    use IDTrait;
 
 
     /** The namespace-attribute for the xs:anyAttribute element */
@@ -46,17 +48,18 @@ abstract class AbstractSignOutType extends AbstractFedElement
      *
      * @param \SimpleSAML\WebServices\Federation\XML\fed\SignOutBasis $signOutBasis
      * @param \SimpleSAML\WebServices\Federation\XML\fed\Realm|null $realm
-     * @param \SimpleSAML\XMLSchema\Type\NCNameValue|null $Id
+     * @param \SimpleSAML\WebServices\Security\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected SignOutBasis $signOutBasis,
         protected ?Realm $realm = null,
-        protected ?NCNameValue $Id = null,
+        ?IDValue $Id = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
+        $this->setId($Id);
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -85,17 +88,6 @@ abstract class AbstractSignOutType extends AbstractFedElement
 
 
     /**
-     * Collect the value of the Id-property
-     *
-     * @return \SimpleSAML\XMLSchema\Type\NCNameValue|null
-     */
-    public function getId(): ?NCNameValue
-    {
-        return $this->Id;
-    }
-
-
-    /**
      * Create an instance of this object from its XML representation.
      *
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
@@ -105,6 +97,11 @@ abstract class AbstractSignOutType extends AbstractFedElement
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
+
+        $Id = null;
+        if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
+            $Id = IDValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
+        }
 
         $signOutBasis = SignOutBasis::getChildrenOfClass($xml);
         Assert::minCount($signOutBasis, 1, MissingElementException::class);
@@ -116,9 +113,7 @@ abstract class AbstractSignOutType extends AbstractFedElement
         return new static(
             $signOutBasis[0],
             array_pop($realm),
-            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')
-                ? NCNameValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'))
-                : null,
+            $Id,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -132,13 +127,9 @@ abstract class AbstractSignOutType extends AbstractFedElement
     {
         $e = parent::instantiateParentElement($parent);
 
-        $attributes = $this->getAttributesNS();
-        if ($this->getId() !== null) {
-            $idAttr = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $this->getId());
-            array_unshift($attributes, $idAttr);
-        }
+        $this->getId()?->toAttribute()->toXML($e);
 
-        foreach ($attributes as $attr) {
+        foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);
         }
 
