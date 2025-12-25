@@ -1,0 +1,9 @@
+<fed:FilterPseudonyms xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" ssp:attr1="testval1">
+  <fed:PseudonymBasis ssp:attr2="testval2">
+    <ssp:Chunk>Basis</ssp:Chunk>
+  </fed:PseudonymBasis>
+  <fed:RelativeTo ssp:attr3="testval3">
+    <ssp:Chunk>Relative</ssp:Chunk>
+  </fed:RelativeTo>
+  <sp:NoPassword ssp:attr4="testval4"/>
+</fed:FilterPseudonyms>

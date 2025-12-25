@@ -1,0 +1,3 @@
+<fed:SecurityToken xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">
+  <ssp:Chunk>SomeChunk</ssp:Chunk>
+</fed:SecurityToken>

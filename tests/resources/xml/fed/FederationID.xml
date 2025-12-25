@@ -1,0 +1,1 @@
+<fed:FederationID xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">urn:x-simplesamlphp:namespace</fed:FederationID>

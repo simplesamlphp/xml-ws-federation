@@ -1,0 +1,6 @@
+<auth:AdditionalContext xmlns:auth="http://docs.oasis-open.org/wsfed/authorization/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr2="value2">
+  <auth:ContextItem Name="urn:x-simplesamlphp:namespace" Scope="urn:x-simplesamlphp:scope" ssp:attr1="value1">
+    <auth:Value>someValue</auth:Value>
+  </auth:ContextItem>
+  <ssp:Chunk>Some</ssp:Chunk>
+</auth:AdditionalContext>

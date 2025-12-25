@@ -1,0 +1,6 @@
+<fed:ClientPseudonym xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">
+  <fed:PPID ssp:attr2="testval2">MyPPID</fed:PPID>
+  <fed:DisplayName ssp:attr3="testval3">MyDisplayName</fed:DisplayName>
+  <fed:EMail ssp:attr4="testval4">example@simplesamlphp.org</fed:EMail>
+  <ssp:Chunk>Some</ssp:Chunk>
+</fed:ClientPseudonym>

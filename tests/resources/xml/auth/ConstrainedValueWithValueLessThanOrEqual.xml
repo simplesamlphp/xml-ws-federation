@@ -1,0 +1,5 @@
+<auth:ConstrainedValue xmlns:auth="http://docs.oasis-open.org/wsfed/authorization/200706" AssertConstraint="true">
+  <auth:ValueLessThanOrEqual>
+    <auth:Value>MyValue</auth:Value>
+  </auth:ValueLessThanOrEqual>
+</auth:ConstrainedValue>

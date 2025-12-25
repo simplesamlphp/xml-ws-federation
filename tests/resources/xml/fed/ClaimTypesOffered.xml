@@ -1,0 +1,8 @@
+<fed:ClaimTypesOffered xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:auth="http://docs.oasis-open.org/wsfed/authorization/200706" ssp:attr1="testval1">
+  <auth:ClaimType Uri="urn:x-simplesamlphp:namespace" Optional="true" ssp:attr2="testval2">
+    <auth:DisplayName>someDisplayName</auth:DisplayName>
+    <auth:Description>someDescription</auth:Description>
+    <auth:DisplayValue>someDisplayValue</auth:DisplayValue>
+    <auth:Value>someValue</auth:Value>
+  </auth:ClaimType>
+</fed:ClaimTypesOffered>

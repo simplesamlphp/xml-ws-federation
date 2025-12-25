@@ -1,0 +1,16 @@
+<fed:Pseudonym xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" ssp:attr1="testval1">
+  <fed:PseudonymBasis ssp:attr2="testval2">
+    <ssp:Chunk>Basis</ssp:Chunk>
+  </fed:PseudonymBasis>
+  <fed:RelativeTo ssp:attr3="testval3">
+    <ssp:Chunk>Relative</ssp:Chunk>
+  </fed:RelativeTo>
+  <wsu:Expires>2001-10-13T09:00:00Z</wsu:Expires>
+  <fed:SecurityToken ssp:attr4="testval4">
+    <ssp:Chunk>Security</ssp:Chunk>
+  </fed:SecurityToken>
+  <fed:ProofToken ssp:attr5="testval5">
+    <ssp:Chunk>Proof</ssp:Chunk>
+  </fed:ProofToken>
+  <ssp:Chunk>Some</ssp:Chunk>
+</fed:Pseudonym>

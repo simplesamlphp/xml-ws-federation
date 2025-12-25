@@ -1,0 +1,7 @@
+<fed:SignOut xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:ssp="urn:x-simplesamlphp:namespace" wsu:Id="phpunit" ssp:attr1="testval1">
+  <fed:Realm>urn:x-simplesamlphp:namespace</fed:Realm>
+  <fed:SignOutBasis ssp:attr2="testval2">
+    <ssp:Chunk>Basis</ssp:Chunk>
+  </fed:SignOutBasis>
+  <ssp:Chunk>Some</ssp:Chunk>
+</fed:SignOut>

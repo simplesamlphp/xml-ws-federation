@@ -1,0 +1,1 @@
+<fed:Freshness xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" AllowCache="true" ssp:attr1="testval1">123</fed:Freshness>

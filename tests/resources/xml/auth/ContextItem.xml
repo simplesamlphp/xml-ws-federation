@@ -1,0 +1,3 @@
+<auth:ContextItem xmlns:auth="http://docs.oasis-open.org/wsfed/authorization/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" Name="urn:x-simplesamlphp:namespace" Scope="urn:x-simplesamlphp:scope" ssp:attr1="value1">
+  <auth:Value>someValue</auth:Value>
+</auth:ContextItem>

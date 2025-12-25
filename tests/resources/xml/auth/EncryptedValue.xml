@@ -1,0 +1,16 @@
+<auth:EncryptedValue xmlns:auth="http://docs.oasis-open.org/wsfed/authorization/200706" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" DescriptionCondition="urn:some:uri">
+  <xenc:EncryptedData Id="MyID" Type="http://www.w3.org/2001/04/xmlenc#Element" MimeType="text/plain" Encoding="urn:x-simplesamlphp:encoding">
+    <xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+    <ds:KeyInfo>
+      <xenc:EncryptedKey>
+        <xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+        <xenc:CipherData>
+          <xenc:CipherValue>/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=</xenc:CipherValue>
+        </xenc:CipherData>
+      </xenc:EncryptedKey>
+    </ds:KeyInfo>
+    <xenc:CipherData>
+      <xenc:CipherValue>/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=</xenc:CipherValue>
+    </xenc:CipherData>
+  </xenc:EncryptedData>
+</auth:EncryptedValue>

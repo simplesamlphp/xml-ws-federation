@@ -1,0 +1,6 @@
+<fed:TokenTypesOffered xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">
+  <fed:TokenType Uri="urn:some:uri" ssp:attr2="testval2">
+    <ssp:Chunk>SomeChunk</ssp:Chunk>
+  </fed:TokenType>
+  <ssp:Chunk>OtherChunk</ssp:Chunk>
+</fed:TokenTypesOffered>

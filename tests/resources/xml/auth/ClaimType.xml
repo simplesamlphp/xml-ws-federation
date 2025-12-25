@@ -1,0 +1,6 @@
+<auth:ClaimType xmlns:auth="http://docs.oasis-open.org/wsfed/authorization/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" Uri="urn:x-simplesamlphp:namespace" Optional="true" ssp:attr1="value1">
+  <auth:DisplayName>someDisplayName</auth:DisplayName>
+  <auth:Description>someDescription</auth:Description>
+  <auth:DisplayValue>someDisplayValue</auth:DisplayValue>
+  <auth:Value>someValue</auth:Value>
+</auth:ClaimType>
