@@ -9,7 +9,6 @@ use SimpleSAML\WebServices\Federation\Assert\Assert;
 use SimpleSAML\WebServices\Federation\Constants as C;
 use SimpleSAML\WebServices\Security\Type\IDValue;
 use SimpleSAML\WebServices\Security\XML\wsu\IDTrait;
-use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
