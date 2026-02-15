@@ -54,11 +54,11 @@ final class EMailTest extends TestCase
     public function testMarshalling(): void
     {
         $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
-        $EMail = new EMail(EmailAddressValue::fromString('example@simplesamlphp.org'), [$attr1]);
+        $email = new EMail(EmailAddressValue::fromString('example@simplesamlphp.org'), [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($EMail),
+            strval($email),
         );
     }
 }

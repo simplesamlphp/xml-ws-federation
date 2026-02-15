@@ -72,7 +72,7 @@ final class ConstrainedSingleValueTest extends TestCase
             [$attr1],
         );
 
-        $value = new Value(StringValue::fromString('MyValue'));
+        $value = Value::fromString('MyValue');
 
         $this->expectException(AssertionFailedException::class);
         new $class($value, $structuredValue);

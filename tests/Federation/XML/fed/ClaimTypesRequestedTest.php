@@ -67,10 +67,10 @@ final class ClaimTypesRequestedTest extends TestCase
         $claimType = new ClaimType(
             AnyURIValue::fromString(C::NAMESPACE),
             BooleanValue::fromBoolean(true),
-            new DisplayName(StringValue::fromString('someDisplayName')),
-            new Description(StringValue::fromString('someDescription')),
-            new DisplayValue(StringValue::fromString('someDisplayValue')),
-            new Value(StringValue::fromString('someValue')),
+            DisplayName::fromString('someDisplayName'),
+            Description::fromString('someDescription'),
+            DisplayValue::fromString('someDisplayValue'),
+            Value::fromString('someValue'),
             [$attr2],
         );
 

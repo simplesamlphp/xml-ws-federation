@@ -13,7 +13,6 @@ use SimpleSAML\WebServices\Federation\XML\fed\Realm;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -51,7 +50,7 @@ final class RealmTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $realm = new Realm(AnyURIValue::fromString(C::NAMESPACE));
+        $realm = Realm::fromString(C::NAMESPACE);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

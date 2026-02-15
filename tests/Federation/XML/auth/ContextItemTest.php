@@ -60,7 +60,7 @@ final class ContextItemTest extends TestCase
         $contextItem = new ContextItem(
             AnyURIValue::fromString(C::NAMESPACE),
             AnyURIValue::fromString('urn:x-simplesamlphp:scope'),
-            new Value(StringValue::fromString('someValue')),
+            Value::fromString('someValue'),
             null,
             [$attr1],
         );

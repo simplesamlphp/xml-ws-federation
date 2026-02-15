@@ -18,7 +18,6 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
 use SimpleSAML\XPath\XPath;
 
@@ -83,7 +82,7 @@ final class SignOutTest extends TestCase
             [$attr2],
         );
 
-        $realm = new Realm(AnyURIValue::fromString('urn:x-simplesamlphp:namespace'));
+        $realm = Realm::fromString('urn:x-simplesamlphp:namespace');
 
         $signOut = new SignOut(
             $signOutBasis,
@@ -112,7 +111,7 @@ final class SignOutTest extends TestCase
             [$attr2],
         );
 
-        $realm = new Realm(AnyURIValue::fromString('urn:x-simplesamlphp:namespace'));
+        $realm = Realm::fromString('urn:x-simplesamlphp:namespace');
 
         $signOut = new SignOut(
             $signOutBasis,
