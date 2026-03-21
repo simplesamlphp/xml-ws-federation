@@ -38,7 +38,7 @@ abstract class AbstractProofTokenType extends AbstractFedElement
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected SerializableElementinterface $child,
+        protected SerializableElementInterface $child,
         array $namespacedAttributes = [],
     ) {
         $this->setElements([$child]);
