@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.5",
         "ext-dom": "*",
 
         "simplesamlphp/assert": "~2.0",
@@ -36,7 +36,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "v1.0.x-dev"
+            "dev-master": "v2.0.x-dev"
         }
     },
     "config": {
