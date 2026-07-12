@@ -16,6 +16,8 @@ use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
+use function array_last;
+
 /**
  * A SignOutType
  *
@@ -111,7 +113,7 @@ abstract class AbstractSignOutType extends AbstractFedElement
 
         return new static(
             $signOutBasis[0],
-            array_pop($realm),
+            array_last($realm),
             $Id,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),

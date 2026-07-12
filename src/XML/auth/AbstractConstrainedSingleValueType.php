@@ -9,7 +9,7 @@ use SimpleSAML\WebServices\Federation\Assert\Assert;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 
-use function array_pop;
+use function array_last;
 
 /**
  * Class representing WS-authorization ConstrainedSingleValueType.
@@ -85,8 +85,8 @@ abstract class AbstractConstrainedSingleValueType extends AbstractAuthElement
         Assert::maxCount($value, 1, TooManyElementsException::class);
 
         return new static(
-            array_pop($value),
-            array_pop($structuredValue),
+            array_last($value),
+            array_last($structuredValue),
         );
     }
 

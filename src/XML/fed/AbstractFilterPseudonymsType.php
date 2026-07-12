@@ -12,6 +12,8 @@ use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
+use function array_last;
+
 /**
  * A FilterPseudonymsType
  *
@@ -101,8 +103,8 @@ abstract class AbstractFilterPseudonymsType extends AbstractFedElement
         Assert::maxCount($relativeTo, 1, TooManyElementsException::class);
 
         return new static(
-            array_pop($pseudonymBasis),
-            array_pop($relativeTo),
+            array_last($pseudonymBasis),
+            array_last($relativeTo),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );

@@ -13,6 +13,8 @@ use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
+use function array_last;
+
 /**
  * A ReferenceTokenType
  *
@@ -123,9 +125,9 @@ abstract class AbstractReferenceTokenType extends AbstractFedElement
 
         return new static(
             $referenceEPR,
-            array_pop($referenceDigest),
-            array_pop($referenceType),
-            array_pop($serialNo),
+            array_last($referenceDigest),
+            array_last($referenceType),
+            array_last($serialNo),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );

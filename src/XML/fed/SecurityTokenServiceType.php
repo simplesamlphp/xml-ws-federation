@@ -23,6 +23,8 @@ use SimpleSAML\XMLSchema\Type\IDValue;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 use SimpleSAML\XMLSecurity\XML\ds\Signature;
 
+use function array_last;
+
 /**
  * Class representing WS-federation SecurityTokenServiceType RoleDescriptor.
  *
@@ -137,19 +139,19 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
             self::getOptionalAttribute($xml, 'ID', IDValue::class, null),
             self::getOptionalAttribute($xml, 'validUntil', SAMLDateTimeValue::class, null),
             self::getOptionalAttribute($xml, 'cacheDuration', DurationValue::class, null),
-            array_pop($extensions),
+            array_last($extensions),
             self::getOptionalAttribute($xml, 'errorURL', SAMLAnyURIValue::class, null),
             KeyDescriptor::getChildrenOfClass($xml),
-            array_pop($orgs),
+            array_last($orgs),
             ContactPerson::getChildrenOfClass($xml),
             self::getAttributesNSFromXML($xml),
-            array_pop($logicalServiceNamesOffered),
-            array_pop($tokenTypesOffered),
-            array_pop($claimDialectsOffered),
-            array_pop($claimTypesOffered),
-            array_pop($claimTypesRequested),
-            array_pop($automaticPseudonyms),
-            array_pop($targetScopes),
+            array_last($logicalServiceNamesOffered),
+            array_last($tokenTypesOffered),
+            array_last($claimDialectsOffered),
+            array_last($claimTypesOffered),
+            array_last($claimTypesRequested),
+            array_last($automaticPseudonyms),
+            array_last($targetScopes),
             self::getOptionalAttribute($xml, 'ServiceDisplayName', SAMLStringValue::class, null),
             self::getOptionalAttribute($xml, 'ServiceDescription', SAMLStringValue::class, null),
             SecurityTokenServiceEndpoint::getChildrenOfClass($xml),

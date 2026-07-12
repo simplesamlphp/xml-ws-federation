@@ -15,7 +15,7 @@ use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_pop;
+use function array_last;
 
 /**
  * Class defining the ContextItemType element
@@ -115,8 +115,8 @@ abstract class AbstractContextItemType extends AbstractAuthElement
         return new static(
             self::getAttribute($xml, 'Name', AnyURIValue::class),
             self::getOptionalAttribute($xml, 'Scope', AnyURIValue::class, null),
-            array_pop($value),
-            array_pop($children),
+            array_last($value),
+            array_last($children),
             self::getAttributesNSFromXML($xml),
         );
     }
