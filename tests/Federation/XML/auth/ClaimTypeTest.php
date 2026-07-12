@@ -102,7 +102,7 @@ final class ClaimTypeTest extends TestCase
         $this->assertCount(1, $claimTypeElements);
 
         // Test ordering of ClaimType contents
-        /** @var \DOMElement[] $claimTypeElements */
+        /** @var \Dom\Element[] $claimTypeElements */
         $claimTypeElements = XPath::xpQuery($claimTypeElement, './auth:DisplayName/following-sibling::*', $xpCache);
         $this->assertCount(3, $claimTypeElements);
         $this->assertEquals('auth:Description', $claimTypeElements[0]->tagName);

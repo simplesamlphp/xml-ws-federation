@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -44,20 +44,20 @@ final class ReferenceTokenTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    /** @var \DOMElement $referenceParametersContent */
-    protected static DOMElement $referenceParametersContent;
+    /** @var \Dom\Element $referenceParametersContent */
+    protected static Dom\Element $referenceParametersContent;
 
-    /** @var \DOMElement $metadataContent */
-    protected static DOMElement $metadataContent;
+    /** @var \Dom\Element $metadataContent */
+    protected static Dom\Element $metadataContent;
 
-    /** @var \DOMElement $customContent */
-    protected static DOMElement $customContent;
+    /** @var \Dom\Element $customContent */
+    protected static Dom\Element $customContent;
 
-    /** @var \DOMElement $someChunk */
-    protected static DOMElement $someChunk;
+    /** @var \Dom\Element $someChunk */
+    protected static Dom\Element $someChunk;
 
-    /** @var \DOMElement $some */
-    protected static DOMElement $some;
+    /** @var \Dom\Element $some */
+    protected static Dom\Element $some;
 
 
     /**

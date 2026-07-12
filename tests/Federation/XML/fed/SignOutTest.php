@@ -128,7 +128,7 @@ final class SignOutTest extends TestCase
         $this->assertCount(1, $signOutElements);
 
         // Test ordering of SignOUt contents
-        /** @var \DOMElement[] $signOutElements */
+        /** @var \Dom\Element[] $signOutElements */
         $signOutElements = XPath::xpQuery($signOutElement, './fed:Realm/following-sibling::*', $xpCache);
 
         $this->assertCount(2, $signOutElements);

@@ -1,4 +1,4 @@
-<fed:SingleSignOutNotificationEndpoints xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:m="https://www.w3schools.com/prices">
+<fed:SingleSignOutNotificationEndpoints xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:m="https://www.w3schools.com/prices">
   <wsa10:EndpointReference ssp:test1="value1">
     <wsa10:Address ssp:test2="value2">https://login.microsoftonline.com/login.srf</wsa10:Address>
     <wsa10:ReferenceParameters ssp:test4="value4">

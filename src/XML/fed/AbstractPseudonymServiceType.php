@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SAML2\Type\SAMLAnyURIListValue;
 use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
 use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
@@ -154,7 +154,7 @@ abstract class AbstractPseudonymServiceType extends AbstractWebServiceDescriptor
     /**
      * Convert this element to XML.
      */
-    public function toUnsignedXML(?DOMElement $parent = null): DOMElement
+    public function toUnsignedXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = parent::toXML($parent);
 

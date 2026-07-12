@@ -186,7 +186,7 @@ final class PseudonymTest extends TestCase
         $this->assertCount(1, $pseudonymBasisElements);
 
         // Test ordering of Pseudonym contents
-        /** @var \DOMElement[] $pseudonymElements */
+        /** @var \Dom\Element[] $pseudonymElements */
         $pseudonymElements = XPath::xpQuery($pseudonymElement, './fed:PseudonymBasis/following-sibling::*', $xpCache);
 
         $this->assertCount(5, $pseudonymElements);
