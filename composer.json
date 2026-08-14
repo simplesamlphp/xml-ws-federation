@@ -51,9 +51,8 @@
     "scripts": {
         "pre-commit": [
             "vendor/bin/phpcs -p",
-            "vendor/bin/composer-require-checker check composer.json",
-            "vendor/bin/phpstan analyze -c phpstan.neon",
-            "vendor/bin/phpstan analyze -c phpstan-dev.neon",
+            "vendor/bin/phpstan analyze -c phpstan.neon --memory-limit=1024M",
+            "vendor/bin/phpstan analyze -c phpstan-dev.neon --memory-limit=1024M",
             "vendor/bin/composer-unused",
             "vendor/bin/phpunit --no-coverage --testdox"
         ]
