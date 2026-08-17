@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:RoleDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:wsa10="http://www.w3.org/2005/08/addressing" protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706" xsi:type="fed:SecurityTokenServiceType" ServiceDisplayName="SimpleSAMLphp ADFS IdP">
+  <fed:SecurityTokenServiceEndpoint xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706">
+    <wsa10:EndpointReference xmlns:wsa10="http://www.w3.org/2005/08/addressing">
+      <wsa10:Address>https://idp.example.org/adfs/services/trust</wsa10:Address>
+    </wsa10:EndpointReference>
+  </fed:SecurityTokenServiceEndpoint>
+  <fed:PassiveRequestorEndpoint xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706">
+    <wsa10:EndpointReference xmlns:wsa10="http://www.w3.org/2005/08/addressing">
+      <wsa10:Address>https://idp.example.org/adfs/ls/</wsa10:Address>
+    </wsa10:EndpointReference>
+  </fed:PassiveRequestorEndpoint>
+</md:RoleDescriptor>

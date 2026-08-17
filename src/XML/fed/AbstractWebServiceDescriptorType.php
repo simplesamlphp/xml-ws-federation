@@ -12,6 +12,8 @@ use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XMLSchema\Constants as C;
 use SimpleSAML\XMLSchema\Type\DurationValue;
 use SimpleSAML\XMLSchema\Type\IDValue;
 use SimpleSAML\XMLSchema\Type\QNameValue;
@@ -23,6 +25,24 @@ use SimpleSAML\XMLSchema\Type\QNameValue;
  */
 abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
 {
+    /**
+     * The element is md:RoleDescriptor, but its content model lives in the WS-Federation schema — that is
+     * what the xsi:type points at. Validating against the inherited metadata schema alone can never resolve
+     * it, because md:RoleDescriptorType is abstract. ws-federation.xsd imports the metadata namespace.
+     */
+    public const string SCHEMA = 'resources/schemas/ws-federation.xsd';
+
+    /**
+     * The exclusions for the xs:anyAttribute element
+     *
+     * xsi:type is modeled by AbstractRoleDescriptor as $type and returned by getXsiType(); without this
+     * exclusion it would also be swept into the extendable-attributes bucket and written a second time.
+     */
+    public const array XS_ANY_ATTR_EXCLUSIONS = [
+        [C::NS_XSI, 'type'],
+    ];
+
+
     /**
      * WebServiceDescriptorType constructor.
      *
@@ -197,6 +217,21 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
     public function toUnsignedXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::toUnsignedXML($parent);
+
+        // md:RoleDescriptor requires an xsi:type. AbstractRoleDescriptor stores it and demands it back in
+        // fromXML(), but nothing ever writes it, so the element cannot round-trip its own output.
+        //
+        // Re-express it with this type's own prefix rather than the caller's: a QName is identified by its
+        // {namespace, local name}, so the prefix is lexical only and the value keeps its meaning — and this
+        // is the one prefix AbstractSignedMdElement::toXML() is guaranteed to declare for us. A caller's
+        // prefix, or none at all, would otherwise be left unbound and the QName unresolvable.
+        $xsiType = QNameValue::fromParts(
+            $this->getXsiType()->getLocalName(),
+            $this->getXsiType()->getNamespaceURI(),
+            static::getXsiTypePrefix(),
+        );
+
+        (new XMLAttribute(C::NS_XSI, 'xsi', 'type', $xsiType))->toXML($e);
 
         $this->getLogicalServiceNamesOffered()?->toXML($e);
         $this->getTokenTypesOffered()?->toXML($e);
