@@ -12,7 +12,7 @@ use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_pop;
+use function array_last;
 
 /**
  * Class defining the ClientPseudonymType element
@@ -114,9 +114,9 @@ abstract class AbstractClientPseudonymType extends AbstractFedElement
         Assert::maxCount($email, 1, SchemaViolationException::class);
 
         return new static(
-            array_pop($ppid),
-            array_pop($displayName),
-            array_pop($email),
+            array_last($ppid),
+            array_last($displayName),
+            array_last($email),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );

@@ -23,8 +23,8 @@ use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\Type\BooleanValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
+use function array_last;
 use function array_merge;
-use function array_pop;
 use function var_export;
 
 /**
@@ -200,10 +200,10 @@ abstract class AbstractClaimType extends AbstractAuthElement
         return new static(
             self::getAttribute($xml, 'Uri', AnyURIValue::class),
             self::getOptionalAttribute($xml, 'Optional', BooleanValue::class, null),
-            array_pop($displayName),
-            array_pop($description),
-            array_pop($displayValue),
-            array_pop($value),
+            array_last($displayName),
+            array_last($description),
+            array_last($displayValue),
+            array_last($value),
             self::getAttributesNSFromXML($xml),
         );
     }
