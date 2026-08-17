@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Type\StringValue;
@@ -41,7 +41,7 @@ abstract class AbstractAttributeExtensibleString extends AbstractFedElement
     /**
      * Create XML from this class
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent()->getValue();

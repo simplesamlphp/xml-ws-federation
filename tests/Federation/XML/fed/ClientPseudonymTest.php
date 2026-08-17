@@ -122,7 +122,7 @@ final class ClientPseudonymTest extends TestCase
         $this->assertCount(1, $clientPseudonymElements);
 
         // Test ordering of ClientPseudonym contents
-        /** @var \DOMElement[] $clientPseudonymElements */
+        /** @var \Dom\Element[] $clientPseudonymElements */
         $clientPseudonymElements = XPath::xpQuery($clientPseudonymElement, './fed:PPID/following-sibling::*', $xpCache);
 
         $this->assertCount(3, $clientPseudonymElements);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -41,14 +41,14 @@ final class SingleSignOutNotificationEndpointsTest extends TestCase
     use SerializableElementTestTrait;
 
 
-    /** @var \DOMElement $referenceParameters */
-    protected static DOMElement $referenceParameters;
+    /** @var \Dom\Element $referenceParameters */
+    protected static Dom\Element $referenceParameters;
 
-    /** @var \DOMElement $metadataContent */
-    protected static DOMElement $metadataContent;
+    /** @var \Dom\Element $metadataContent */
+    protected static Dom\Element $metadataContent;
 
-    /** @var \DOMElement $customContent */
-    protected static DOMElement $customContent;
+    /** @var \Dom\Element $customContent */
+    protected static Dom\Element $customContent;
 
 
     /**

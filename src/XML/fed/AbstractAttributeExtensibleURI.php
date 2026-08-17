@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\WebServices\Federation\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
@@ -43,13 +43,17 @@ abstract class AbstractAttributeExtensibleURI extends AbstractFedElement
     /**
      * Create a class from XML
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            AnyURIValue::fromString($xml->textContent),
+            AnyURIValue::fromString($textContent),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -58,7 +62,7 @@ abstract class AbstractAttributeExtensibleURI extends AbstractFedElement
     /**
      * Create XML from this class
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent()->getValue();

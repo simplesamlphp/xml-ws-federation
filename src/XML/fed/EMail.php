@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\SAML2\Type\EmailAddressValue;
 use SimpleSAML\WebServices\Federation\Assert\Assert;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
@@ -29,13 +29,17 @@ final class EMail extends AbstractAttributeExtensibleString
     /**
      * Create a class from XML
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            EmailAddressValue::fromString($xml->textContent),
+            EmailAddressValue::fromString($textContent),
             self::getAttributesNSFromXML($xml),
         );
     }

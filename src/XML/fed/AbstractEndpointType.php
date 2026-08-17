@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WebServices\Federation\XML\fed;
 
-use DOMElement;
+use Dom;
 use SimpleSAML\WebServices\Addressing\XML\wsa_200508\EndpointReference;
 use SimpleSAML\WebServices\Federation\Assert\Assert;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
@@ -45,7 +45,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
      * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
-    public static function fromXML(DOMElement $xml): static
+    public static function fromXML(Dom\Element $xml): static
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
@@ -59,7 +59,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
     /**
      * Convert this element to XML.
      */
-    public function toXML(?DOMElement $parent = null): DOMElement
+    public function toXML(?Dom\Element $parent = null): Dom\Element
     {
         $e = $this->instantiateParentElement($parent);
 
