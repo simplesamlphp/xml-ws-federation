@@ -78,9 +78,9 @@ final class ConstrainedValueTest extends TestCase
     #[DataProvider('classProvider')]
     public function testMarshalling(string $class, string $xmlRepresentation): void
     {
-        $xmlRepresentation = DOMDocumentFactory::fromFile(
-            self::$resourcePath . $xmlRepresentation,
-        );
+        /** @var non-empty-string $filePath */
+        $filePath = self::$resourcePath . $xmlRepresentation;
+        $xmlRepresentation = DOMDocumentFactory::fromFile($filePath);
 
         /**
          * @var (
@@ -114,9 +114,9 @@ final class ConstrainedValueTest extends TestCase
     #[DataProvider('classProvider')]
     public function testUnmarshalling(string $class, string $xmlRepresentation): void
     {
-        $xmlRepresentation = DOMDocumentFactory::fromFile(
-            self::$resourcePath . $xmlRepresentation,
-        );
+        /** @var non-empty-string $filePath */
+        $filePath = self::$resourcePath . $xmlRepresentation;
+        $xmlRepresentation = DOMDocumentFactory::fromFile($filePath);
 
         $constrainedValue = ConstrainedValue::fromXML($xmlRepresentation->documentElement);
         $this->assertEquals(
@@ -127,7 +127,7 @@ final class ConstrainedValueTest extends TestCase
 
 
     /**
-     * @return array<string, list<string>>
+     * @return array<string, list<non-empty-string>>
      */
     public static function classProvider(): array
     {
