@@ -53,7 +53,11 @@ abstract class AbstractDisplayNameType extends AbstractAuthElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        return new static(StringValue::fromString($xml->textContent), self::getAttributesNSFromXML($xml));
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
+        return new static(StringValue::fromString($textContent), self::getAttributesNSFromXML($xml));
     }
 
 

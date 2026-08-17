@@ -69,8 +69,12 @@ abstract class AbstractFreshnessType extends AbstractFedElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            UnsignedIntValue::fromString($xml->textContent),
+            UnsignedIntValue::fromString($textContent),
             self::getOptionalAttribute($xml, 'AllowCache', BooleanValue::class, null),
             self::getAttributesNSFromXML($xml),
         );

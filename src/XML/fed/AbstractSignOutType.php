@@ -101,7 +101,9 @@ abstract class AbstractSignOutType extends AbstractFedElement
 
         $Id = null;
         if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
-            $Id = IDValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
+            /** @var string $IdValue */
+            $IdValue = $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id');
+            $Id = IDValue::fromString($IdValue);
         }
 
         $signOutBasis = SignOutBasis::getChildrenOfClass($xml);

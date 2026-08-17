@@ -24,8 +24,12 @@ final class PPID extends AbstractAttributeExtensibleString
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            StringValue::fromString($xml->textContent),
+            StringValue::fromString($textContent),
             self::getAttributesNSFromXML($xml),
         );
     }

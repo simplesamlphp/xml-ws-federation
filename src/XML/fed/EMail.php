@@ -34,8 +34,12 @@ final class EMail extends AbstractAttributeExtensibleString
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            EmailAddressValue::fromString($xml->textContent),
+            EmailAddressValue::fromString($textContent),
             self::getAttributesNSFromXML($xml),
         );
     }

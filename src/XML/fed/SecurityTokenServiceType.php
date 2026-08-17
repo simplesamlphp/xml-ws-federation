@@ -51,7 +51,9 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
             SchemaViolationException::class,
         );
 
-        $type = QNameValue::fromDocument($xml->getAttributeNS(C::NS_XSI, 'type'), $xml);
+        /** @var string $typeValue */
+        $typeValue = $xml->getAttributeNS(C::NS_XSI, 'type');
+        $type = QNameValue::fromDocument($typeValue, $xml);
 
         $orgs = Organization::getChildrenOfClass($xml);
         Assert::maxCount(

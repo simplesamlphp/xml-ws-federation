@@ -48,8 +48,12 @@ abstract class AbstractAttributeExtensibleURI extends AbstractFedElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            AnyURIValue::fromString($xml->textContent),
+            AnyURIValue::fromString($textContent),
             self::getAttributesNSFromXML($xml),
         );
     }

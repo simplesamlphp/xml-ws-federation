@@ -48,8 +48,12 @@ abstract class AbstractReferenceDigestType extends AbstractFedElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        /** @var string $textContent */
+        $textContent = $xml->textContent;
+        Assert::notNull($textContent);
+
         return new static(
-            Base64BinaryValue::fromString($xml->textContent),
+            Base64BinaryValue::fromString($textContent),
             self::getAttributesNSFromXML($xml),
         );
     }
