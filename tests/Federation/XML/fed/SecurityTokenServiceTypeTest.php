@@ -195,8 +195,14 @@ final class SecurityTokenServiceTypeTest extends TestCase
             strval($securityTokenServiceType->getXsiType()),
         );
 
-        // xsi:type is modelled as the element's own type, not as one of its extendable attributes.
-        $this->assertEmpty($securityTokenServiceType->getAttributesNS());
+        // xsi:type reaches the document through the extendable-attributes bucket, and lands there exactly
+        // once — the copy fromXML() sweeps in as a plain StringValue is replaced by the typed one.
+        $attributes = $securityTokenServiceType->getAttributesNS();
+        $this->assertCount(1, $attributes);
+        $this->assertEquals(C_XSI::NS_XSI, $attributes[0]->getNamespaceURI());
+        $this->assertEquals('type', $attributes[0]->getAttrName());
+        $this->assertEquals('fed:SecurityTokenServiceType', strval($attributes[0]->getAttrValue()));
+
         $this->assertCount(1, $securityTokenServiceType->getSecurityTokenServiceEndpoint());
         $this->assertCount(1, $securityTokenServiceType->getPassiveRequestorEndpoint());
         $this->assertEquals(

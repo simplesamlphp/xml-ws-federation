@@ -18,6 +18,9 @@ use SimpleSAML\XMLSchema\Type\DurationValue;
 use SimpleSAML\XMLSchema\Type\IDValue;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 
+use function array_filter;
+use function array_values;
+
 /**
  * An WebServiceDescriptorType
  *
@@ -31,16 +34,6 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
      * it, because md:RoleDescriptorType is abstract. ws-federation.xsd imports the metadata namespace.
      */
     public const string SCHEMA = 'resources/schemas/ws-federation.xsd';
-
-    /**
-     * The exclusions for the xs:anyAttribute element
-     *
-     * xsi:type is modelled by AbstractRoleDescriptor as $type and returned by getXsiType(); without this
-     * exclusion it would also be swept into the extendable-attributes bucket and written a second time.
-     */
-    public const array XS_ANY_ATTR_EXCLUSIONS = [
-        [C::NS_XSI, 'type'],
-    ];
 
 
     /**
@@ -96,6 +89,33 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
         protected ?SAMLStringValue $serviceDisplayName = null,
         protected ?SAMLStringValue $serviceDescription = null,
     ) {
+        // md:RoleDescriptor requires an xsi:type. AbstractRoleDescriptor stores it and demands it back in
+        // fromXML(), but nothing ever writes it, so the element cannot round-trip its own output. Hand it
+        // to the extendable-attributes bucket, which the parent already serializes.
+        $xsiType = $type;
+
+        // An unprefixed QName — from a document that carried this namespace on xmlns — can only resolve
+        // through the default namespace, and declaring one here would silently capture any unqualified
+        // descendant. Re-express it with this type's own prefix instead: a QName is identified by its
+        // {namespace, local name}, so the prefix is lexical only and the value keeps its meaning.
+        if ($xsiType->getNamespaceURI() !== null && $xsiType->getNamespacePrefix() === null) {
+            $xsiType = QNameValue::fromParts(
+                $xsiType->getLocalName(),
+                $xsiType->getNamespaceURI(),
+                static::getXsiTypePrefix(),
+            );
+        }
+
+        // fromXML() also sweeps xsi:type into this bucket as a plain StringValue, so drop that copy
+        // rather than let two entries claim the same attribute name — the typed one carries the
+        // resolved namespace, the swept one only the lexical form it happened to be written with.
+        $namespacedAttributes = array_values(array_filter(
+            $namespacedAttributes,
+            static fn (XMLAttribute $attr): bool
+                => $attr->getNamespaceURI() !== C::NS_XSI || $attr->getAttrName() !== 'type',
+        ));
+        $namespacedAttributes[] = new XMLAttribute(C::NS_XSI, 'xsi', 'type', $xsiType);
+
         parent::__construct(
             $type,
             $protocolSupportEnumeration,
@@ -217,43 +237,6 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
     public function toUnsignedXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::toUnsignedXML($parent);
-
-        // md:RoleDescriptor requires an xsi:type. AbstractRoleDescriptor stores it and demands it back in
-        // fromXML(), but nothing ever writes it, so the element cannot round-trip its own output.
-        $xsiType = $this->getXsiType();
-
-        // An unprefixed QName — from a document that carried this namespace on xmlns — can only resolve
-        // through the default namespace, and declaring one here would silently capture any unqualified
-        // descendant. Re-express it with this type's own prefix instead: a QName is identified by its
-        // {namespace, local name}, so the prefix is lexical only and the value keeps its meaning.
-        if ($xsiType->getNamespaceURI() !== null && $xsiType->getNamespacePrefix() === null) {
-            $xsiType = QNameValue::fromParts(
-                $xsiType->getLocalName(),
-                $xsiType->getNamespaceURI(),
-                static::getXsiTypePrefix(),
-            );
-        }
-
-        $namespaceURI = $xsiType->getNamespaceURI();
-        $namespacePrefix = $xsiType->getNamespacePrefix();
-
-        // The prefix appears only inside the attribute *value*, so DOM will not declare it for us. Bind it
-        // unless it is already in scope for this very namespace. AbstractSignedMdElement::toXML() separately
-        // declares the *canonical* prefix once this method returns; this covers a caller-supplied one.
-        if (
-            $namespaceURI !== null &&
-            $namespacePrefix !== null &&
-            $e->lookupNamespaceURI($namespacePrefix->getValue()) !== $namespaceURI->getValue()
-        ) {
-            $e->setAttributeNS(
-                'http://www.w3.org/2000/xmlns/',
-                'xmlns:' . $namespacePrefix->getValue(),
-                $namespaceURI->getValue(),
-            );
-        }
-
-        $type = new XMLAttribute(C::NS_XSI, 'xsi', 'type', $xsiType);
-        $type->toXML($e);
 
         $this->getLogicalServiceNamesOffered()?->toXML($e);
         $this->getTokenTypesOffered()?->toXML($e);
