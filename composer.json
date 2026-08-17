@@ -13,13 +13,13 @@
         "php": "^8.5",
         "ext-dom": "*",
 
-        "simplesamlphp/assert": "~2.0",
-        "simplesamlphp/saml2": "dev-feature/dom-migration-php84",
-        "simplesamlphp/xml-common": "dev-feature/dom-migration-php84",
-        "simplesamlphp/xml-security": "dev-feature/dom-migration-php84",
-        "simplesamlphp/xml-ws-addressing": "dev-feature/dom-migration-php84",
-        "simplesamlphp/xml-ws-security-policy": "dev-feature/dom-migration-php84",
-        "simplesamlphp/xml-wss-core": "dev-feature/dom-migration-php84"
+        "simplesamlphp/assert": "~3.0",
+        "simplesamlphp/saml2": "~7.0@RC",
+        "simplesamlphp/xml-common": "~3.0",
+        "simplesamlphp/xml-security": "~3.0",
+        "simplesamlphp/xml-ws-addressing": "~2.0",
+        "simplesamlphp/xml-ws-security-policy": " ~2.0",
+        "simplesamlphp/xml-wss-core": "~2.0"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "~2.0"
