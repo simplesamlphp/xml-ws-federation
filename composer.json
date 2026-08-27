@@ -13,7 +13,6 @@
         "php": "^8.5",
         "ext-dom": "*",
 
-        "simplesamlphp/assert": "~3.0",
         "simplesamlphp/saml2": "~7.0@RC",
         "simplesamlphp/xml-common": "~3.0",
         "simplesamlphp/xml-security": "~3.0",
@@ -22,6 +21,8 @@
         "simplesamlphp/xml-wss-core": "~2.0"
     },
     "require-dev": {
+        "phpunit/phpunit": "^13.3",
+        "simplesamlphp/assert": "~3.0",
         "simplesamlphp/simplesamlphp-test-framework": "~2.0"
     },
     "autoload": {
